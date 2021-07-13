@@ -1,27 +1,27 @@
 //Base de datos para probar
 const db = {
     'user': [
-        { id: 1, name: 'Sergio' },
+        { id: '1', name: 'Sergio' },
     ]
 };
 
-function list(table) {
+async function list(table) {
     return db[table];
 }
 
-function get(table, id) {
-    let col = list(table);
+async function get(table, id) {
+    let col = await list(table);
     //Find te retorna el primero, mientras que si usas filter te retorna todos con la misma condicion
     return col.find(item => item.id == id) || null;
 }
 
 //Actualizar e insertar
-function upsert(table, data) {
+async function upsert(table, data) {
     db[collection].push(data);
 }
 
 //Eliminar datos
-function remove(table, id) {
+async function remove(table, id) {
     return true;
 }
 
