@@ -1,6 +1,7 @@
 //Tiene acceso a la parte de almacenamiento de datos
 //Para generar id's
-const nanoid = require('nanoid');
+const {nanoid} = require('nanoid');
+const auth = require('../auth');
 
 const TABLA = 'user';
 
@@ -9,31 +10,31 @@ module.exports = (injectedStore) => {
         injectedStore = require('../../../store/dummy');
     }
 
-    /* function list() {
-        return injectedStore.list(TABLA);
+    async function upsert(body) {
+        const user = {
+            name: body.name,
+            username: body.username
+        };
+        if(body.id) {
+            user.id = body.id;
+        } else {
+            user.id = nanoid();
+        }
+
+        if(body.password || body.username) {
+            await auth.upsert({
+                id: user.id,
+                username: user.username,
+                password: body.password
+            });
+        }
+
+        return injectedStore.upsert(TABLA, user);
     }
 
-    function get(id) {
-        return injectedStore.list(TABLA, id);
-    }
-
-    return {
-        list,
-        get
-    } */
     return {
         list: () => injectedStore.list(TABLA),
         get: (id) => injectedStore.list(TABLA, id),
-        upsert: (body) => {
-            const user = {
-                name: body.name
-            };
-            if(body.id) {
-                user.id = body.id;
-            } else {
-                user.id = nanoid();
-            }
-            injectedStore.upsert(TABLA, user);
-        }
+        upsert
     };
-}
+};
