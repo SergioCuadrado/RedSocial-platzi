@@ -1,8 +1,10 @@
 // Se podria llamar routes el fichero
 const express = require('express');
 
+const secure = require('./user-secure');
 const response = require('../../../network/response');
 const controller = require('./index');
+
 
 const router = express();
 
@@ -10,7 +12,7 @@ const router = express();
 router.get('/', list);
 router.get('/:id', get);
 router.post('/', upsert);
-router.put('/', upsert);
+router.put('/', secure('update'), upsert);
 
 function list(req, res) {
     controller.list()
