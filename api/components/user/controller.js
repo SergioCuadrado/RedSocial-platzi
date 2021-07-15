@@ -32,9 +32,26 @@ module.exports = (injectedStore) => {
         return injectedStore.upsert(TABLA, user);
     }
 
+    function follow(from, to) {
+        return injectedStore.upsert(TABLA + '_follow', {
+            user_from: from,
+            user_to: to
+        });
+    }
+
+    async function following(user) {
+        const join = {};
+        join[TABLA] = 'user_to'; // { user: 'user_to' }
+        const query = { user_from: user };
+		
+		return await injectedStore.query(TABLA + '_follow', query, join);
+    }
+
     return {
         list: () => injectedStore.list(TABLA),
         get: (id) => injectedStore.list(TABLA, id),
-        upsert
+        upsert,
+        follow,
+        following
     };
 };
