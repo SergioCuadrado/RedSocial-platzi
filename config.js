@@ -10,10 +10,10 @@ module.exports = {
         secret: process.env.JWT_SECRET || 'notasecret!'
     },
     mysql: {
-        host: process.env.MYSQL_HOST || 'sql4.freemysqlhosting.net',
-        user: process.env.MYSQL_USER || 'sql4425254',
-        password: process.env.MYSQL_PASS || 'Nj1kTtLwfS',
-        database: process.env.MYSQL_DB || 'sql4425254',
+        host: process.env.MYSQL_HOST || 'hosting',
+        user: process.env.MYSQL_USER || 'user_hosting',
+        password: process.env.MYSQL_PASS || 'password_hosting',
+        database: process.env.MYSQL_DB || 'database',
     },
     mysqlService: {
         host: process.env.MYSQL_SRV_HOST || 'localhost',
@@ -24,8 +24,8 @@ module.exports = {
         port:  process.env.MYSQL_SRV_PORT || 3003
     },
     redis: {
-        host: process.env.REDIS_HOST || 'redis-11480.c247.eu-west-1-1.ec2.cloud.redislabs.com',
+        host: process.env.REDIS_HOST || 'cache_redis',
         port: process.env.REDIS_PORT || 11480,
-        password: process.env.REDIS_PASS || 'WnX7I1IpfA4sRfNy3acii5tvGoDKmUeR'
+        password: process.env.REDIS_PASS || 'password_redis'
     }
 };
