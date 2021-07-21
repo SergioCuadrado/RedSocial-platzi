@@ -1,4 +1,4 @@
-const TABLA = 'post';
+const TABLE = 'post';
 const { nanoid } = require('nanoid');
 
 
